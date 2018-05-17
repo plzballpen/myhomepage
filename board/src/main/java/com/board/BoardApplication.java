@@ -10,11 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
 @MapperScan(value = {"com.board.mapper"})
 public class BoardApplication {
 //링크 = http://private.tistory.com/36
+//주소 = http://localhost:8080/board	
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
 	}
@@ -33,4 +35,15 @@ public class BoardApplication {
             
             return sessionFactory.getObject();
     }
+    
+    /**
+     * HiddenHttpMethodFilter  
+     */
+    @Bean
+    public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
+        HiddenHttpMethodFilter filter = new HiddenHttpMethodFilter();
+        return filter;
+    }
+
+    
 }
